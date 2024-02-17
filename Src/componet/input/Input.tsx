@@ -56,20 +56,10 @@ type InputProps = {
   editable?: boolean;
   border?: boolean;
   ref?: any;
-  maxDate?: Date | undefined;
-  minDate?: Date | undefined;
+
 };
 
-// benefits of hook form
-// Supports native form validation.
-// It’s small and requires no dependencies.
-// easy for validation
 
-/**
- * created by jigar patel
- * @param props name controller & name is most required parameter
- * @returns return custom theme textInput
- */
 
 const Input = (props: InputProps) => {
   const {
@@ -97,8 +87,7 @@ const Input = (props: InputProps) => {
     editable,
     border,
     ref,
-    maxDate,
-    minDate,
+   
   } = props;
   //  const { colors } = useTheme();
   const [passwordVisible, setPasswordVisible] = useState(true);
@@ -118,7 +107,7 @@ const Input = (props: InputProps) => {
             <Text
               style={{
                 marginVertical: 4,
-                color: isDark ? "#ffff" : "#ffff",
+                color: isDark ? "balck" : "black",
                 fontWeight: isDark ? "600" : "400",
                 fontSize: 14,
                 fontFamily: "Myriad Pro",
@@ -131,11 +120,8 @@ const Input = (props: InputProps) => {
           <TouchableOpacity
             activeOpacity={1}
             onPress={
-              isDate || isDateOfBirth
-                ? () => {
-                  setShowDatePiker(true);
-                }
-                : onPress
+             
+                 onPress
             }
             style={[
               styles.container,
@@ -149,9 +135,9 @@ const Input = (props: InputProps) => {
               style={[
                 styles.input,
                 {
-                  color: "#295392",
+                  color: "balck",
                   height: multiline ? 112 : 44,
-                  paddingTop: multiline ? 10 : 0,
+                  paddingTop: multiline ? 10 : 10,
                 },
                 style,
               ]}
@@ -185,31 +171,11 @@ const Input = (props: InputProps) => {
 
 
 
-            {isDate && (
-              <Image
-
-                source={require('../../../assets/image/calendarmonth.png')}
-                style={{ width: 30, height: 30 }}
-              />
-            )}
-
+          
 
           </TouchableOpacity>
           <Text style={styles.error}>{error ? error.toString() : " "}</Text>
-          {isDate && (
-            <DatePikerModal
-              isVisible={showDatePiker}
-              onDateSelect={onChange}
-              onCancle={() => {
-                setShowDatePiker(false);
-              }}
-              onClose={() => {
-                setShowDatePiker(false);
-              }}
-              maxDate={maxDate}
-              minDate={minDate}
-            />
-          )}
+         
 
 
         </View>
@@ -240,14 +206,14 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     alignSelf: "center",
-    // borderRadius: 10,
-    //   borderWidth: 1,
+     borderRadius: 10,
+       borderWidth: 1,
     flexDirection: "row",
     marginTop: 0,
     paddingHorizontal: 10,
     backgroundColor: '#ffff'
   },
-  error: { color: "#ffff", fontSize: 14, marginTop: 2 },
+  error: { color: "red", fontSize: 14, marginTop: 2 },
   input: {
     flex: 1,
     height: 47,

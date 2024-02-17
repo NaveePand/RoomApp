@@ -7,7 +7,6 @@ import {
   StyleProp,
   ViewStyle,
   ActivityIndicator,
-  View,
 } from "react-native";
 
 import {useTheme} from '@react-navigation/native';
@@ -31,30 +30,24 @@ const ButtonBlue = (props: ButtonProps) => {
 	return (
 		<TouchableOpacity
 			disabled={isLoading}
-			style={[styles.button, style]}
+			style={[styles.button, {backgroundColor: 'blue'}, style]}
 			onPress={onPress}
 			key={keyStr}
 		>
-			<View style={styles.titleview}>
-			<Text
-				style={[styles.title]}
-						
-						
-						 >
+			{icon}
+			{isLoading
+				? (
+					<ActivityIndicator color={colors.background} />
+				)
+				: (
+					<Text
+						style={{
+							color: colors.background,
+							...styles.title,
+						}} >
 						{title}
 					</Text>
-
-					<Text
-				style={[styles.title,{fontSize:32}]}
-						
-						
-						 >
-						0.00
-					</Text>
-					
-					</View>
-
-
+				)}
 		</TouchableOpacity>
 	);
 };
@@ -63,13 +56,10 @@ export default ButtonBlue;
 
 const styles = StyleSheet.create({
 	button: {
-		//alignItems: 'center',
-	//	borderRadius: 8,
-		height:73,
+		alignItems: 'center',
+		borderRadius: 8,
+		height:   56,
 		justifyContent: 'center',
-		marginHorizontal:20,
-		marginTop:25
 	},
-	title: { fontSize:24,fontWeight:'700',top:1.5,color:'#FFFFFF',textAlign:'center'},
-	titleview:{flexDirection:'row',justifyContent:'space-between',marginHorizontal:30}
+	title: {fontFamily: 'Myriad Pro', fontSize: 16,fontWeight:'600',top:1.5},
 });

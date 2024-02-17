@@ -1,29 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUserState } from "./UserInterface";
 
-// user reducer store user data and all types of token
+interface IUserState {
+  isLoading: boolean;
+  credentials: {
+    email: string | null;
+    password: string | null;
+  };
+}
+
 const initialState: IUserState = {
-  rememberUserData: [],
-  userData: null
+  isLoading: false,
+  credentials: {
+    email: null,
+    password: null,
+  },
 };
 
 const UserReducer = createSlice({
   name: "user",
   initialState,
   reducers: {
-   
-    setRememberUserData: (state, action) => {
-
-
-      state.rememberUserData = [...state.rememberUserData, action.payload];
+    setLoadingState: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setCredentials: (state, action) => {
+      state.credentials = action.payload;
+    },
+    logout: (state) => {
+      state.credentials = { email: null, password: null };
+      state.isLoading = false;
     },
   },
 });
 
-export const {
-
-  setRememberUserData,
- 
-} = UserReducer.actions;
+export const { setLoadingState, setCredentials, logout } = UserReducer.actions;
 
 export default UserReducer.reducer;
